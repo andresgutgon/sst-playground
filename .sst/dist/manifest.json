@@ -21,7 +21,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::442420265876:role/cdk-hnb659fds-deploy-role-442420265876-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::442420265876:role/cdk-hnb659fds-cfn-exec-role-442420265876-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-442420265876-us-east-1/d1749b99d271554436ec3bb57dc922ea69ef49bb18efd83d93c2be85677672ad.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-442420265876-us-east-1/14604606aaa203c15abb234588c8c006ad1b5d233de73d8a953b553dfa7e6fcf.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -64,10 +64,28 @@
             "data": "CustomResourceHandlerE8FB56BA"
           }
         ],
+        "/andres-sst-playground-Site/public/Bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "publicBucket5C3DBAB0"
+          }
+        ],
+        "/andres-sst-playground-Site/public/Parameter_bucketName/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "publicParameterbucketName69D24DDB"
+          }
+        ],
         "/andres-sst-playground-Site/site/ServerFunctionRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "siteServerFunctionRole1F8F4FAC"
+          }
+        ],
+        "/andres-sst-playground-Site/site/ServerFunctionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "siteServerFunctionRoleDefaultPolicy213DB8A5"
           }
         ],
         "/andres-sst-playground-Site/site/ServerFunction/AssetReplacerPolicy/Resource": [

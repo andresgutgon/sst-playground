@@ -43,7 +43,7 @@
         }
       }
     },
-    "d1749b99d271554436ec3bb57dc922ea69ef49bb18efd83d93c2be85677672ad": {
+    "14604606aaa203c15abb234588c8c006ad1b5d233de73d8a953b553dfa7e6fcf": {
       "source": {
         "path": "andres-sst-playground-Site.template.json",
         "packaging": "file"
@@ -51,7 +51,7 @@
       "destinations": {
         "442420265876-us-east-1": {
           "bucketName": "cdk-hnb659fds-assets-442420265876-us-east-1",
-          "objectKey": "d1749b99d271554436ec3bb57dc922ea69ef49bb18efd83d93c2be85677672ad.json",
+          "objectKey": "14604606aaa203c15abb234588c8c006ad1b5d233de73d8a953b553dfa7e6fcf.json",
           "region": "us-east-1",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::442420265876:role/cdk-hnb659fds-file-publishing-role-442420265876-us-east-1"
         }

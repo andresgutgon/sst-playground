@@ -148,6 +148,111 @@
               "version": "2.79.1"
             }
           },
+          "public": {
+            "id": "public",
+            "path": "andres-sst-playground-Site/public",
+            "children": {
+              "Bucket": {
+                "id": "Bucket",
+                "path": "andres-sst-playground-Site/public/Bucket",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "andres-sst-playground-Site/public/Bucket/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                      "aws:cdk:cloudformation:props": {
+                        "corsConfiguration": {
+                          "corsRules": [
+                            {
+                              "allowedHeaders": [
+                                "*"
+                              ],
+                              "allowedMethods": [
+                                "GET",
+                                "PUT",
+                                "HEAD",
+                                "POST",
+                                "DELETE"
+                              ],
+                              "allowedOrigins": [
+                                "*"
+                              ]
+                            }
+                          ]
+                        },
+                        "ownershipControls": {
+                          "rules": [
+                            {
+                              "objectOwnership": "BucketOwnerPreferred"
+                            }
+                          ]
+                        },
+                        "publicAccessBlockConfiguration": {
+                          "blockPublicAcls": false,
+                          "ignorePublicAcls": false
+                        },
+                        "tags": [
+                          {
+                            "key": "sst:app",
+                            "value": "sst-playground"
+                          },
+                          {
+                            "key": "sst:stage",
+                            "value": "andres"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                      "version": "2.79.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.Bucket",
+                  "version": "2.79.1"
+                }
+              },
+              "Parameter_bucketName": {
+                "id": "Parameter_bucketName",
+                "path": "andres-sst-playground-Site/public/Parameter_bucketName",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "andres-sst-playground-Site/public/Parameter_bucketName/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SSM::Parameter",
+                      "aws:cdk:cloudformation:props": {
+                        "type": "String",
+                        "value": {
+                          "Ref": "publicBucket5C3DBAB0"
+                        },
+                        "name": "/sst/sst-playground/andres/Bucket/public/bucketName",
+                        "tags": {
+                          "sst:app": "sst-playground",
+                          "sst:stage": "andres"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ssm.CfnParameter",
+                      "version": "2.79.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ssm.StringParameter",
+                  "version": "2.79.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.156"
+            }
+          },
           "site": {
             "id": "site",
             "path": "andres-sst-playground-Site/site",
@@ -215,6 +320,66 @@
                     },
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.79.1"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "andres-sst-playground-Site/site/ServerFunctionRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "andres-sst-playground-Site/site/ServerFunctionRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "s3:*",
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "publicBucket5C3DBAB0",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "publicBucket5C3DBAB0",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "siteServerFunctionRoleDefaultPolicy213DB8A5",
+                            "roles": [
+                              {
+                                "Ref": "siteServerFunctionRole1F8F4FAC"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.79.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
                       "version": "2.79.1"
                     }
                   }
@@ -361,7 +526,10 @@
                               "variables": {
                                 "SST_APP": "sst-playground",
                                 "SST_STAGE": "andres",
-                                "SST_SSM_PREFIX": "/sst/sst-playground/andres/"
+                                "SST_SSM_PREFIX": "/sst/sst-playground/andres/",
+                                "SST_Bucket_bucketName_public": {
+                                  "Ref": "publicBucket5C3DBAB0"
+                                }
                               }
                             },
                             "handler": "index.handler",
