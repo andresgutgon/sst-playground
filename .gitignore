@@ -13,7 +13,8 @@
 /out/
 
 # SST
-/.sst/
+.sst/
+.open-next
 
 # production
 /build
