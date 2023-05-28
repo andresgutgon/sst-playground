@@ -10,11 +10,11 @@ export default async function Home() {
     Key: crypto.randomUUID(),
     Bucket: Bucket.public.bucketName,
   });
-  const signedUrl = await getSignedUrl(new S3Client({}), command)
+  /* const signedUrl = await getSignedUrl(new S3Client({}), command) */
 
   return (
     <main className='pt-4 mx-auto max-w-xl'>
-      <UploadForm signedUrl={signedUrl} />
+      <UploadForm signedUrl={'NOP'} />
     </main >
   )
 }
